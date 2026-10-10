@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b18">
+  <meta name="description" content="Excel-based analysis of simulated 2025 cafe sales across four Metro Manila branches.">
+  <title>Cafe Sales Analysis | Dashboard</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101b18;
+      --panel: #192722;
+      --panel-soft: #1e3029;
+      --line: rgba(231, 238, 219, .12);
+      --text: #edf1e7;
+      --muted: #a3b0a1;
+      --mint: #a9d6a3;
+      --cream: #e9d9ac;
+      --rose: #dcae9a;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(ellipse at 70% -15%, rgba(169, 214, 163, .11), transparent 42%),
+        var(--bg);
+      color: var(--text);
+    }
+    a { color: inherit; }
+    .shell { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    .topbar { border-bottom: 1px solid var(--line); }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 72px; }
+    .brand { display: flex; align-items: center; gap: .7rem; font-weight: 650; letter-spacing: -.02em; }
+    .brand-mark { display: grid; width: 36px; height: 36px; place-items: center; border: 1px solid rgba(233, 217, 172, .3); border-radius: 12px; color: var(--cream); }
+    .eyebrow { color: var(--mint); font: 600 .72rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .18em; text-transform: uppercase; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 42px; padding: .65rem 1rem; border: 1px solid rgba(169, 214, 163, .36); border-radius: 9px; background: var(--mint); color: #122019; font-size: .86rem; font-weight: 700; text-decoration: none; transition: transform .18s ease, background .18s ease; }
+    .button:hover { transform: translateY(-1px); background: #c3e4bc; }
+    .button.secondary { background: transparent; color: var(--text); border-color: var(--line); }
+    .button.secondary:hover { border-color: rgba(169, 214, 163, .5); background: rgba(169, 214, 163, .06); }
+    main { padding: 64px 0 80px; }
+    .intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 2rem; }
+    h1 { max-width: 720px; margin: .8rem 0 1rem; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.04; letter-spacing: -.055em; }
+    .lede { max-width: 690px; margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+    .source-pill { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.2rem; padding: .45rem .7rem; border: 1px solid rgba(233, 217, 172, .2); border-radius: 999px; color: var(--cream); font-size: .76rem; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 38px; }
+    .metric, .panel { border: 1px solid var(--line); border-radius: 15px; background: linear-gradient(145deg, rgba(30, 48, 41, .9), rgba(25, 39, 34, .88)); }
+    .metric { min-height: 126px; padding: 20px; }
+    .metric-label { color: var(--muted); font-size: .78rem; }
+    .metric-value { display: block; margin-top: 12px; color: var(--text); font-size: clamp(1.25rem, 2.6vw, 1.9rem); font-weight: 700; letter-spacing: -.04em; }
+    .metric-note { display: block; margin-top: 5px; color: #8d9b8c; font-size: .72rem; }
+    .content-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); gap: 16px; margin-top: 16px; }
+    .panel { padding: 24px; }
+    h2 { margin: 0; font-size: 1.12rem; letter-spacing: -.02em; }
+    .panel-lede { margin: 8px 0 0; color: var(--muted); font-size: .84rem; line-height: 1.6; }
+    .dimensions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 20px; }
+    .dimension { min-height: 82px; padding: 14px; border: 1px solid rgba(231, 238, 219, .08); border-radius: 11px; background: rgba(255, 255, 255, .018); }
+    .dimension strong { display: block; color: var(--cream); font-size: .82rem; font-weight: 600; }
+    .dimension span { display: block; margin-top: 6px; color: var(--muted); font-size: .75rem; line-height: 1.5; }
+    .chart-preview { display: grid; grid-template-columns: 60px 1fr; gap: 12px; align-items: end; height: 126px; margin-top: 20px; padding: 14px 14px 0; border: 1px solid rgba(231, 238, 219, .08); border-radius: 11px; background: rgba(255, 255, 255, .018); }
+    .chart-bars { display: flex; align-items: end; gap: 7px; height: 100%; border-bottom: 1px solid rgba(231, 238, 219, .15); }
+    .bar { flex: 1; height: var(--bar-height); border-radius: 5px 5px 0 0; background: linear-gradient(180deg, rgba(169, 214, 163, .75), rgba(169, 214, 163, .12)); }
+    .chart-copy { align-self: center; color: var(--muted); font-size: .72rem; line-height: 1.55; }
+    .chart-copy strong { display: block; margin-bottom: 4px; color: var(--text); font-size: .8rem; }
+    .process { display: grid; gap: 0; margin-top: 16px; }
+    .step { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(231, 238, 219, .08); }
+    .step:first-child { border-top: 0; padding-top: 18px; }
+    .step-no { display: grid; width: 28px; height: 28px; place-items: center; border: 1px solid rgba(169, 214, 163, .2); border-radius: 8px; color: var(--mint); font: 600 .7rem ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .step strong { display: block; font-size: .82rem; }
+    .step span { display: block; margin-top: 3px; color: var(--muted); font-size: .74rem; line-height: 1.5; }
+    .bottom-row { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 16px; padding: 20px 24px; border: 1px solid rgba(233, 217, 172, .16); border-radius: 14px; background: rgba(233, 217, 172, .035); }
+    .bottom-row p { margin: 7px 0 0; color: var(--muted); font-size: .79rem; line-height: 1.55; }
+    footer { padding: 22px 0 30px; border-top: 1px solid var(--line); color: #819081; font-size: .72rem; line-height: 1.6; }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 28px, 560px); }
+      .topbar-inner { min-height: 64px; }
+      .topbar .button { min-height: 38px; padding: .55rem .7rem; font-size: .76rem; }
+      main { padding: 44px 0 56px; }
+      .intro { grid-template-columns: 1fr; align-items: start; gap: 18px; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 26px; }
+      .metric { min-height: 108px; padding: 15px; }
+      .content-grid { grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
+      .panel { padding: 19px; }
+      .bottom-row { align-items: flex-start; flex-direction: column; padding: 18px; }
+    }
+    @media (max-width: 390px) {
+      .dimensions { grid-template-columns: 1fr; }
+      .metric-value { font-size: 1.3rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">C</span><span>Cafe Sales Analysis</span></div>
+      <a class="button secondary" href="https://1drv.ms/x/c/069d45d704321105/IQB7gz0k0iGoSpKTa5mOP4mzAbgmGbr9GE1wf-WhUz9EFN4?e=Fj6fjm" target="_blank" rel="noreferrer">Open Excel workbook <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Data analysis · Excel · 2025</p>
+        <h1 id="page-title">Where does the cafe make its money?</h1>
+        <p class="lede">A structured analysis of simulated point-of-sale data from a four-branch Metro Manila cafe. The workbook preserves the raw export, documents cleaning decisions, compares sales patterns, and connects its findings to practical recommendations.</p>
+        <span class="source-pill"><span aria-hidden="true">●</span> Simulated data · Not real business transactions</span>
+      </div>
+      <a class="button" href="https://1drv.ms/x/c/069d45d704321105/IQB7gz0k0iGoSpKTa5mOP4mzAbgmGbr9GE1wf-WhUz9EFN4?e=Fj6fjm" target="_blank" rel="noreferrer">Explore the workbook <span aria-hidden="true">→</span></a>
+    </section>
+    <section class="metrics" aria-label="Workbook summary">
+      <article class="metric"><span class="metric-label">Net revenue</span><strong class="metric-value">₱394,428</strong><span class="metric-note">Workbook headline result</span></article>
+      <article class="metric"><span class="metric-label">Branches</span><strong class="metric-value">04</strong><span class="metric-note">Metro Manila sample</span></article>
+      <article class="metric"><span class="metric-label">Coverage</span><strong class="metric-value">2025</strong><span class="metric-note">Calendar year</span></article>
+      <article class="metric"><span class="metric-label">Visualizations</span><strong class="metric-value">08</strong><span class="metric-note">Charts in the workbook</span></article>
+    </section>
+    <div class="content-grid">
+      <section class="panel" aria-labelledby="analysis-title">
+        <p class="eyebrow">Analysis overview</p>
+        <h2 id="analysis-title" style="margin-top:8px">Compare the dimensions behind sales</h2>
+        <p class="panel-lede">The Excel workbook groups and compares cleaned records across these business dimensions.</p>
+        <div class="dimensions">
+          <div class="dimension"><strong>Location</strong><span>Branch performance across four locations</span></div>
+          <div class="dimension"><strong>What sells</strong><span>Product and category comparisons</span></div>
+          <div class="dimension"><strong>When it sells</strong><span>Month, weekday, time slot, and hour</span></div>
+          <div class="dimension"><strong>How customers pay</strong><span>Payment method and customer type</span></div>
+        </div>
+        <div class="chart-preview" role="img" aria-label="Decorative chart preview. Consult the workbook for the actual charts and values.">
+          <div class="chart-copy"><strong>Sales patterns</strong>Eight linked charts in Excel</div>
+          <div class="chart-bars" aria-hidden="true"><span class="bar" style="--bar-height:38%"></span><span class="bar" style="--bar-height:65%"></span><span class="bar" style="--bar-height:48%"></span><span class="bar" style="--bar-height:82%"></span><span class="bar" style="--bar-height:57%"></span><span class="bar" style="--bar-height:72%"></span><span class="bar" style="--bar-height:45%"></span></div>
+        </div>
+        <p class="panel-lede">Illustrative only: the workbook link contains the actual charts and their underlying values.</p>
+      </section>
+      <section class="panel" aria-labelledby="process-title">
+        <p class="eyebrow">Method</p>
+        <h2 id="process-title" style="margin-top:8px">From raw export to action</h2>
+        <div class="process">
+          <div class="step"><span class="step-no">01</span><div><strong>Inspect &amp; clean</strong><span>Profile data issues, record fixes, and preserve a clean analysis table.</span></div></div>
+          <div class="step"><span class="step-no">02</span><div><strong>Calculate &amp; group</strong><span>Build revenue measures and summarize by product, branch, and time.</span></div></div>
+          <div class="step"><span class="step-no">03</span><div><strong>Compare &amp; visualize</strong><span>Review differences and make patterns easier to interpret with charts.</span></div></div>
+          <div class="step"><span class="step-no">04</span><div><strong>Recommend</strong><span>Connect evidence to prioritized actions and success measures.</span></div></div>
+        </div>
+      </section>
+    </div>
+    <section class="bottom-row" aria-label="Open full analysis workbook">
+      <div>
+        <p class="eyebrow">See the full analysis</p>
+        <p>Explore the raw and cleaned sheets, calculations, comparisons, eight charts, findings, and recommendations in the Excel workbook.</p>
+      </div>
+      <a class="button" href="https://1drv.ms/x/c/069d45d704321105/IQB7gz0k0iGoSpKTa5mOP4mzAbgmGbr9GE1wf-WhUz9EFN4?e=Fj6fjm" target="_blank" rel="noreferrer">Open workbook <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+  <footer><div class="shell">All figures and visual patterns are based on the simulated Excel workbook. The small chart above is decorative and does not encode the sales results.</div></footer>
+</body>
+</html>
