@@ -40,6 +40,7 @@
     .button:hover { transform: translateY(-1px); background: #c3e4bc; }
     .button.secondary { background: transparent; color: var(--text); border-color: var(--line); }
     .button.secondary:hover { border-color: rgba(169, 214, 163, .5); background: rgba(169, 214, 163, .06); }
+    .intro-actions { display: flex; flex-wrap: wrap; gap: 10px; }
     main { padding: 64px 0 80px; }
     .intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 2rem; }
     h1 { max-width: 720px; margin: .8rem 0 1rem; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.04; letter-spacing: -.055em; }
@@ -109,7 +110,10 @@
         <p class="lede">A structured analysis of simulated point-of-sale data from a four-branch Metro Manila cafe. The workbook preserves the raw export, documents cleaning decisions, compares sales patterns, and connects its findings to practical recommendations.</p>
         <span class="source-pill"><span aria-hidden="true">●</span> Simulated data · Not real business transactions</span>
       </div>
-      <a class="button" href="https://1drv.ms/x/c/069d45d704321105/IQB7gz0k0iGoSpKTa5mOP4mzAbgmGbr9GE1wf-WhUz9EFN4?e=Fj6fjm" target="_blank" rel="noreferrer">Explore the workbook <span aria-hidden="true">→</span></a>
+      <div class="intro-actions">
+        <a class="button" href="https://1drv.ms/x/c/069d45d704321105/IQB7gz0k0iGoSpKTa5mOP4mzAbgmGbr9GE1wf-WhUz9EFN4?e=Fj6fjm" target="_blank" rel="noreferrer">Explore the workbook <span aria-hidden="true">→</span></a>
+        <a class="button secondary" href="https://github.com/ickostlr/cafe-sales-data-analysis/blob/main/dashboard/raw_data.csv" target="_blank" rel="noreferrer">View raw data <span aria-hidden="true">↗</span></a>
+      </div>
     </section>
     <section class="metrics" aria-label="Workbook summary">
       <article class="metric"><span class="metric-label">Net revenue</span><strong class="metric-value">₱394,428</strong><span class="metric-note">Workbook headline result</span></article>
@@ -150,7 +154,10 @@
         <p class="eyebrow">See the full analysis</p>
         <p>Explore the raw and cleaned sheets, calculations, comparisons, eight charts, findings, and recommendations in the Excel workbook.</p>
       </div>
-      <a class="button" href="https://1drv.ms/x/c/069d45d704321105/IQB7gz0k0iGoSpKTa5mOP4mzAbgmGbr9GE1wf-WhUz9EFN4?e=Fj6fjm" target="_blank" rel="noreferrer">Open workbook <span aria-hidden="true">↗</span></a>
+      <div class="intro-actions">
+        <a class="button" href="https://1drv.ms/x/c/069d45d704321105/IQB7gz0k0iGoSpKTa5mOP4mzAbgmGbr9GE1wf-WhUz9EFN4?e=Fj6fjm" target="_blank" rel="noreferrer">Open workbook <span aria-hidden="true">↗</span></a>
+        <a class="button secondary" href="https://github.com/ickostlr/cafe-sales-data-analysis/blob/main/dashboard/raw_data.csv" target="_blank" rel="noreferrer">View raw data <span aria-hidden="true">↗</span></a>
+      </div>
     </section>
   </main>
   <footer><div class="shell">All figures and visual patterns are based on the simulated Excel workbook. The small chart above is decorative and does not encode the sales results.</div></footer>
