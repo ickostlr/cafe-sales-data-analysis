@@ -3,7 +3,8 @@
 A data analysis project built in Excel to explore sales patterns for a simulated four-branch Metro Manila cafe across calendar year 2025.
 
 **Status:** Completed using simulated point-of-sale data  
-**Dashboard:** [`dashboard/`](dashboard/)  
+**Dashboard:** [`dashboard/`](dashboard/) (includes the Excel workbook)  
+**Raw data:** [`dashboard/raw_data.csv`](dashboard/raw_data.csv) (1,836 rows)  
 **Source workbook:** [Open Cafe_Sales_Data_Analysis.xlsx in Excel for the web](https://1drv.ms/x/c/069d45d704321105/IQB7gz0k0iGoSpKTa5mOP4mzAbgmGbr9GE1wf-WhUz9EFN4?e=Fj6fjm)
 
 ## Project question
@@ -15,6 +16,14 @@ Where does a four-branch Metro Manila cafe make its money, and how can its sales
 The workbook uses a **simulated point-of-sale export** for 2025. Each row represents one product line on an order. Fields include order ID, date, hour, branch, product and category, quantity, unit price, discount, payment method, and customer type.
 
 The raw data intentionally includes duplicates, typos, blanks, text-formatted dates, and outliers so the cleaning process can be demonstrated. It does not represent real business transactions.
+
+The repository's [`raw_data.csv`](dashboard/raw_data.csv) is an uncleaned export of the workbook's `1_Raw_Data` sheet. It contains simulated data only and is published so the raw inputs can be viewed directly on GitHub.
+
+## Repository layout
+
+- [`analysis/`](analysis/) contains the workbook's interpretation, recommendations, and limitations.
+- [`charts/`](charts/) contains image exports of all eight workbook charts.
+- [`dashboard/`](dashboard/) contains the Excel workbook, browser dashboard, and raw CSV.
 
 ## Analysis workflow
 
@@ -30,7 +39,7 @@ The raw data intentionally includes duplicates, typos, blanks, text-formatted da
 
 ## Workbook highlights
 
-- **Net revenue:** PHP 394,428 (workbook headline result)
+- **Net revenue:** ₱394,428 (workbook headline result)
 - **Coverage:** 4 branches across calendar year 2025
 - **Visualizations:** 8 charts in the workbook
 - **Workbook structure:** README, raw data, inspection, cleaning log, clean data, calculations, grouping, comparisons, visualizations, interpretations, and recommendations
@@ -41,13 +50,22 @@ All headline values describe the simulated workbook data, not a real cafe.
 
 ```text
 cafe-sales-data-analysis/
-|-- README.md
-`-- dashboard/
-    |-- README.md
-    `-- index.html
+├── README.md
+├── analysis/
+│   └── README.md
+├── charts/
+│   ├── README.md
+│   ├── index.html
+│   ├── *.svg
+│   └── *.png
+└── dashboard/
+    ├── README.md
+    ├── index.html
+    ├── Cafe_Sales_Data_Analysis.xlsx
+    └── raw_data.csv
 ```
 
-The repository dashboard summarizes the project and links to the full interactive Excel workbook, which contains the cleaned data, formulas, charts, findings, and recommendations.
+The repository dashboard summarizes the project and links to the raw dataset and full Excel workbook, which contains the cleaned data, formulas, charts, findings, and recommendations.
 
 ## Tools
 
