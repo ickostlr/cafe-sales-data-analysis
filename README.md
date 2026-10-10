@@ -56,8 +56,7 @@ cafe-sales-data-analysis/
 ├── charts/
 │   ├── README.md
 │   ├── index.html
-│   ├── *.svg
-│   └── *.png
+│   └── *.svg
 └── dashboard/
     ├── README.md
     ├── index.html
