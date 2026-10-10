@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+<title id="title">Net revenue by category</title><desc id="desc">Chart exported from the simulated Cafe Sales Data Analysis workbook chart series.</desc>
+<rect width="1200" height="700" rx="18" fill="#f8fafc"/><text x="600" y="54" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="27" font-weight="700" fill="#14231f">Net revenue by category</text>
+<line x1="120" y1="520" x2="1155" y2="520" stroke="#dce5e1" stroke-width="1"/><text x="106" y="525" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="15" fill="#52635d">₱0</text>
+<line x1="120" y1="440" x2="1155" y2="440" stroke="#dce5e1" stroke-width="1"/><text x="106" y="445" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="15" fill="#52635d">₱25,609</text>
+<line x1="120" y1="360" x2="1155" y2="360" stroke="#dce5e1" stroke-width="1"/><text x="106" y="365" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="15" fill="#52635d">₱51,218</text>
+<line x1="120" y1="280" x2="1155" y2="280" stroke="#dce5e1" stroke-width="1"/><text x="106" y="285" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="15" fill="#52635d">₱76,827</text>
+<line x1="120" y1="200" x2="1155" y2="200" stroke="#dce5e1" stroke-width="1"/><text x="106" y="205" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="15" fill="#52635d">₱102,436</text>
+<line x1="120" y1="120" x2="1155" y2="120" stroke="#dce5e1" stroke-width="1"/><text x="106" y="125" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="15" fill="#52635d">₱128,045</text>
+<line x1="120" y1="120" x2="120" y2="520" stroke="#71827b"/><line x1="120" y1="520" x2="1155" y2="520" stroke="#71827b"/>
+<rect x="194.5" y="120" width="55" height="400" rx="5" fill="#2d7a68"/>
+<rect x="401.5" y="200.02" width="55" height="319.98" rx="5" fill="#2d7a68"/>
+<rect x="608.5" y="327.17" width="55" height="192.83" rx="5" fill="#2d7a68"/>
+<rect x="815.5" y="355.67" width="55" height="164.33" rx="5" fill="#2d7a68"/>
+<rect x="1022.5" y="364.99" width="55" height="155.01" rx="5" fill="#2d7a68"/>
+<text x="245.5" y="542" transform="rotate(-35 245.5 542)" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="14" fill="#42534c">Iced Coffee</text>
+<text x="452.5" y="542" transform="rotate(-35 452.5 542)" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="14" fill="#42534c">Hot Coffee</text>
+<text x="659.5" y="542" transform="rotate(-35 659.5 542)" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="14" fill="#42534c">Meals</text>
+<text x="866.5" y="542" transform="rotate(-35 866.5 542)" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="14" fill="#42534c">Non-Coffee</text>
+<text x="1073.5" y="542" transform="rotate(-35 1073.5 542)" text-anchor="end" font-family="Segoe UI,Arial,sans-serif" font-size="14" fill="#42534c">Pastry</text>
+<text x="600" y="678" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="13" fill="#71827b">Source: 7_Visualize chart series · Simulated 2025 cafe POS data</text></svg>
